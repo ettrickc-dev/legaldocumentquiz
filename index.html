@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Legal Document Checker — Find Out What You Actually Need | EasyLegalFiling</title>
+<meta name="description" content="Take the free 2-minute quiz to find out exactly which legal documents you need based on your life situation. Works for all 50 states. Powered by EasyLegalFiling — attorney-designed filing systems.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://easylegalfiling.com/legalguide/legal-document-quiz.html">
+<link rel="icon" href="/legalguide/favicon.png">
+<meta property="og:title" content="Free Legal Document Checker — What Do You Actually Need?">
+<meta property="og:description" content="2-minute quiz reveals your exact legal document needs. Free. All 50 states. Powered by EasyLegalFiling.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --purple:      #4b2aad;
+  --purple-dk:   #3a1f8a;
+  --purple-lt:   #6447c7;
+  --purple-pale: #ede9ff;
+  --teal:        #00857a;
+  --teal-lt:     #ccfbf1;
+  --amber:       #f59e0b;
+  --amber-pale:  #fef3c7;
+  --green:       #15803d;
+  --green-lt:    #dcfce7;
+  --red:         #c0392b;
+  --red-lt:      #fee2e2;
+  --navy:        #0f1b2d;
+  --gray-50:     #f9fafb;
+  --gray-100:    #f3f4f6;
+  --gray-200:    #e5e7eb;
+  --gray-400:    #9ca3af;
+  --gray-500:    #6b7280;
+  --gray-600:    #4b5563;
+  --gray-800:    #1f2937;
+  --r:           10px;
+  --r-lg:        18px;
+  --shadow:      0 4px 16px rgba(0,0,0,.10);
+  --shadow-lg:   0 16px 48px rgba(0,0,0,.16);
+  --t:           0.2s ease;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Source Sans 3',sans-serif;background:#fff;color:var(--gray-800);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ── HEADER ── */
+.site-header{background:#fff;border-bottom:1px solid var(--gray-200);padding:14px 0;position:sticky;top:0;z-index:900}
+.header-inner{width:min(1100px,92%);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-name{font-family:'Merriweather',serif;font-size:18px;font-weight:900;color:var(--purple);line-height:1.1}
+.brand-tag{font-size:11px;color:var(--gray-400);letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+.btn-header{background:var(--purple);color:#fff;font-weight:700;font-size:13px;padding:9px 18px;border-radius:var(--r);transition:background var(--t)}
+.btn-header:hover{background:var(--purple-lt)}
+@media(max-width:600px){.brand-tag{display:none}}
+
+/* ── QUIZ WRAPPER ── */
+.quiz-page{background:var(--gray-50);min-height:calc(100vh - 65px);padding:40px 0 80px}
+.quiz-container{width:min(680px,94%);margin:0 auto}
+
+/* ── QUIZ HEADER ── */
+.quiz-header{text-align:center;margin-bottom:36px}
+.quiz-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--purple-pale);color:var(--purple);font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.quiz-header h1{font-family:'Merriweather',serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;color:var(--navy);line-height:1.2;margin-bottom:10px}
+.quiz-header h1 em{font-style:normal;color:var(--purple)}
+.quiz-header p{font-size:.97rem;color:var(--gray-500);max-width:500px;margin:0 auto;line-height:1.7}
+.quiz-trust{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px;flex-wrap:wrap}
+.qtrust{font-size:12px;color:var(--gray-400);font-weight:600;display:flex;align-items:center;gap:5px}
+.qtrust::before{content:'✓';color:var(--teal);font-weight:800}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{margin-bottom:28px}
+.progress-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400);font-weight:600;margin-bottom:7px}
+.progress-bar{background:var(--gray-200);border-radius:10px;height:6px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--purple) 0%,var(--purple-lt) 100%);border-radius:10px;transition:width .4s ease}
+
+/* ── QUESTION CARD ── */
+.question-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);padding:32px;margin-bottom:20px;transition:opacity .25s ease,transform .25s ease}
+.question-card.hiding{opacity:0;transform:translateX(-20px)}
+.question-card.entering{opacity:0;transform:translateX(20px)}
+.q-step{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--purple);margin-bottom:8px}
+.q-text{font-family:'Merriweather',serif;font-size:1.15rem;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:6px}
+.q-sub{font-size:.87rem;color:var(--gray-500);margin-bottom:22px;line-height:1.6}
+
+/* ── ANSWER OPTIONS ── */
+.options-grid{display:grid;gap:10px}
+.options-grid.two-col{grid-template-columns:1fr 1fr}
+@media(max-width:480px){.options-grid.two-col{grid-template-columns:1fr}}
+
+.option-btn{background:#fff;border:2px solid var(--gray-200);border-radius:var(--r);padding:14px 18px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:border-color var(--t),background var(--t),transform var(--t);font-family:'Source Sans 3',sans-serif}
+.option-btn:hover{border-color:var(--purple);background:var(--purple-pale);transform:translateY(-1px)}
+.option-btn.selected{border-color:var(--purple);background:var(--purple-pale)}
+.option-btn.selected .opt-check{background:var(--purple);border-color:var(--purple);color:#fff}
+.opt-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--gray-300);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;transition:all var(--t)}
+.opt-icon{font-size:20px;flex-shrink:0}
+.opt-text{flex:1}
+.opt-label{font-size:.95rem;font-weight:700;color:var(--navy);line-height:1.3}
+.opt-sub{font-size:.78rem;color:var(--gray-500);margin-top:2px}
+
+/* multi-select hint */
+.multi-hint{font-size:.78rem;color:var(--gray-400);font-style:italic;margin-bottom:12px}
+
+/* ── NAV BUTTONS ── */
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.btn-back{background:none;border:1.5px solid var(--gray-200);color:var(--gray-600);font-weight:600;font-size:.9rem;padding:11px 20px;border-radius:var(--r);cursor:pointer;transition:all var(--t);font-family:'Source Sans 3',sans-serif}
+.btn-back:hover{border-color:var(--purple);color:var(--purple)}
+.btn-next{background:var(--purple);color:#fff;font-weight:700;font-size:.97rem;padding:13px 28px;border-radius:var(--r);cursor:pointer;border:none;transition:background var(--t),transform var(--t);font-family:'Source Sans 3',sans-serif;box-shadow:0 4px 14px rgba(75,42,173,.3)}
+.btn-next:hover{background:var(--purple-lt);transform:translateY(-1px)}
+.btn-next:disabled{background:var(--gray-300);box-shadow:none;cursor:not-allowed;transform:none}
+
+/* ── EMAIL GATE ── */
+.email-gate{background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:36px;text-align:center}
+.email-gate-icon{font-size:48px;margin-bottom:16px}
+.email-gate h2{font-family:'Merriweather',serif;font-size:1.4rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+.email-gate p{font-size:.93rem;color:var(--gray-500);margin-bottom:24px;line-height:1.7;max-width:400px;margin-left:auto;margin-right:auto}
+.email-form{display:flex;gap:10px;max-width:420px;margin:0 auto}
+@media(max-width:480px){.email-form{flex-direction:column}}
+.email-input{flex:1;border:2px solid var(--gray-200);border-radius:var(--r);padding:13px 16px;font-size:.95rem;font-family:'Source Sans 3',sans-serif;transition:border-color var(--t);outline:none}
+.email-input:focus{border-color:var(--purple)}
+.btn-reveal{background:var(--purple);color:#fff;font-weight:700;font-size:.93rem;padding:13px 22px;border-radius:var(--r);cursor:pointer;border:none;white-space:nowrap;font-family:'Source Sans 3',sans-serif;transition:background var(--t)}
+.btn-reveal:hover{background:var(--purple-lt)}
+.skip-link{display:block;margin-top:12px;font-size:.82rem;color:var(--gray-400);cursor:pointer;text-decoration:underline}
+.skip-link:hover{color:var(--purple)}
+
+/* ── RESULTS ── */
+#results{display:none}
+.results-header{text-align:center;margin-bottom:32px}
+.score-circle-wrap{display:flex;justify-content:center;margin-bottom:24px}
+.score-circle{width:120px;height:120px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Merriweather',serif;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.score-num{font-size:2.2rem;font-weight:900;line-height:1}
+.score-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.score-urgent{background:linear-gradient(135deg,#fee2e2,#fecaca);color:var(--red)}
+.score-moderate{background:linear-gradient(135deg,#fef3c7,#fde68a);color:#92400e}
+.score-good{background:linear-gradient(135deg,var(--green-lt),#bbf7d0);color:var(--green)}
+.results-header h2{font-family:'Merriweather',serif;font-size:1.5rem;font-weight:900;color:var(--navy);margin-bottom:8px}
+.results-header p{font-size:.95rem;color:var(--gray-500);max-width:500px;margin:0 auto;line-height:1.7}
+
+/* ── RESULT CARDS ── */
+.results-section-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--gray-400);margin:28px 0 14px}
+.result-card{background:#fff;border-radius:var(--r-lg);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden;border:1.5px solid var(--gray-200);transition:border-color var(--t),box-shadow var(--t)}
+.result-card:hover{border-color:var(--purple);box-shadow:var(--shadow-lg)}
+.result-card.urgent{border-color:var(--red)}
+.result-card.priority{border-color:var(--purple)}
+.result-card-head{padding:18px 20px 14px;display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid var(--gray-100)}
+.rc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.bg-red{background:var(--red-lt)}
+.bg-purple{background:var(--purple-pale)}
+.bg-teal{background:var(--teal-lt)}
+.bg-amber{background:var(--amber-pale)}
+.bg-green{background:var(--green-lt)}
+.rc-badge{margin-left:auto;font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge-urgent{background:var(--red-lt);color:var(--red)}
+.badge-needed{background:var(--purple-pale);color:var(--purple)}
+.badge-free{background:var(--teal-lt);color:var(--teal)}
+.badge-done{background:var(--green-lt);color:var(--green)}
+.rc-title{font-family:'Merriweather',serif;font-size:.97rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+.rc-why{font-size:.83rem;color:var(--gray-500);line-height:1.55}
+.result-card-body{padding:14px 20px 18px;display:flex;flex-direction:column;gap:8px}
+.btn-result{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:13.5px;padding:12px 16px;border-radius:var(--r);text-decoration:none;transition:background var(--t),border-color var(--t);gap:6px}
+.btn-result.primary{background:var(--purple);color:#fff}
+.btn-result.primary:hover{background:var(--purple-lt)}
+.btn-result.outline{background:transparent;border:1.5px solid var(--gray-200);color:var(--gray-800)}
+.btn-result.outline:hover{border-color:var(--purple);color:var(--purple)}
+.btn-result.free{background:#f0fdf9;border:1.5px solid #99f6e4;color:var(--teal)}
+.btn-result.free:hover{background:var(--teal-lt)}
+.free-tag{font-size:.68rem;font-weight:800;background:var(--teal);color:#fff;padding:2px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
+
+/* ── WHATSAPP CTA ── */
+.wa-result{background:linear-gradient(135deg,var(--navy) 0%,var(--purple-dk) 100%);border-radius:var(--r-lg);padding:24px;text-align:center;margin-top:28px;color:#fff}
+.wa-result h3{font-family:'Merriweather',serif;font-size:1.1rem;font-weight:900;margin-bottom:8px}
+.wa-result p{font-size:.87rem;color:rgba(255,255,255,.7);margin-bottom:18px;line-height:1.65}
+.btn-wa{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:800;font-size:.97rem;padding:14px 28px;border-radius:var(--r);text-decoration:none;transition:opacity var(--t)}
+.btn-wa:hover{opacity:.9}
+
+/* ── RESTART ── */
+.restart-wrap{text-align:center;margin-top:20px}
+.btn-restart{background:none;border:1.5px solid var(--gray-200);color:var(--gray-500);font-size:.87rem;font-weight:600;padding:10px 20px;border-radius:var(--r);cursor:pointer;font-family:'Source Sans 3',sans-serif;transition:all var(--t)}
+.btn-restart:hover{border-color:var(--purple);color:var(--purple)}
+
+/* ── FOOTER ── */
+.quiz-footer{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--gray-200)}
+.quiz-footer p{font-size:.78rem;color:var(--gray-400);line-height:1.7}
+.quiz-footer a{color:var(--purple);text-decoration:underline}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:22px;right:22px;background:#25D366;color:#fff;font-weight:700;font-size:13px;padding:12px 18px;border-radius:50px;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.45);z-index:800;display:flex;align-items:center;gap:7px;transition:transform var(--t)}
+.wa-float:hover{transform:scale(1.05)}
+@media(max-width:480px){.wa-float span{display:none}}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeInUp .4s ease forwards}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="https://easylegalfiling.com" class="brand">
+      <img src="/legalguide/logo.png" alt="EasyLegalFiling" style="height:42px;width:auto">
+      <div>
+        <div class="brand-name">EasyLegalFiling</div>
+        <div class="brand-tag">Attorney-Designed Filing Systems</div>
+      </div>
+    </a>
+    <a class="btn-header" href="https://wa.me/17186756729" target="_blank">💬 Free Help</a>
+  </div>
+</header>
+
+<!-- QUIZ PAGE -->
+<div class="quiz-page">
+  <div class="quiz-container">
+
+    <!-- QUIZ HEADER -->
+    <div class="quiz-header fade-in">
+      <div class="quiz-eyebrow">⚖️ Free Legal Checkup · All 50 States</div>
+      <h1>What Legal Documents Do<br><em>You Actually Need?</em></h1>
+      <p>Answer 8 quick questions about your life situation. We'll tell you exactly which documents protect you — and which gaps could cost your family thousands.</p>
+      <div class="quiz-trust">
+        <span class="qtrust">Takes 2 minutes</span>
+        <span class="qtrust">100% free</span>
+        <span class="qtrust">All 50 states</span>
+        <span class="qtrust">Attorney-designed</span>
+      </div>
+    </div>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-labels">
+        <span id="progressLabel">Question 1 of 8</span>
+        <span id="progressPct">12%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:12%"></div></div>
+    </div>
+
+    <!-- QUESTION CARDS -->
+    <div id="quizBody">
+
+      <!-- Q1 -->
+      <div class="question-card fade-in" id="q1">
+        <div class="q-step">Question 1 of 8</div>
+        <div class="q-text">What is your current relationship status?</div>
+        <div class="q-sub">This affects which documents protect your partner and assets.</div>
+        <div class="options-grid two-col">
+          <button class="option-btn" data-q="1" data-val="married" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">💍</div>
+            <div class="opt-text"><div class="opt-label">Married</div></div>
+          </button>
+          <button class="option-btn" data-q="1" data-val="partner" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">❤️</div>
+            <div class="opt-text"><div class="opt-label">Unmarried Partner</div><div class="opt-sub">Living together or serious relationship</div></div>
+          </button>
+          <button class="option-btn" data-q="1" data-val="single" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">👤</div>
+            <div class="opt-text"><div class="opt-label">Single</div></div>
+          </button>
+          <button class="option-btn" data-q="1" data-val="separated" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">⚖️</div>
+            <div class="opt-text"><div class="opt-label">Separated / Divorcing</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <div></div>
+          <button class="btn-next" id="next1" disabled onclick="nextQuestion(1)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card fade-in" id="q2" style="display:none">
+        <div class="q-step">Question 2 of 8</div>
+        <div class="q-text">Do you have children?</div>
+        <div class="q-sub">Children under 18 require specific protections most parents don't have.</div>
+        <div class="options-grid two-col">
+          <button class="option-btn" data-q="2" data-val="minor" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">👶</div>
+            <div class="opt-text"><div class="opt-label">Yes — under 18</div></div>
+          </button>
+          <button class="option-btn" data-q="2" data-val="adult" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">👨‍👩‍👦</div>
+            <div class="opt-text"><div class="opt-label">Yes — adults only</div></div>
+          </button>
+          <button class="option-btn" data-q="2" data-val="none" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🚫</div>
+            <div class="opt-text"><div class="opt-label">No children</div></div>
+          </button>
+          <button class="option-btn" data-q="2" data-val="expecting" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🤰</div>
+            <div class="opt-text"><div class="opt-label">Expecting / Planning</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(2)">← Back</button>
+          <button class="btn-next" id="next2" disabled onclick="nextQuestion(2)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card fade-in" id="q3" style="display:none">
+        <div class="q-step">Question 3 of 8</div>
+        <div class="q-text">Do you own property or significant assets?</div>
+        <div class="q-sub">Select all that apply to you.</div>
+        <div class="multi-hint">You can select multiple options</div>
+        <div class="options-grid">
+          <button class="option-btn multi" data-q="3" data-val="home" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🏠</div>
+            <div class="opt-text"><div class="opt-label">Home or Real Estate</div></div>
+          </button>
+          <button class="option-btn multi" data-q="3" data-val="savings" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🏦</div>
+            <div class="opt-text"><div class="opt-label">Bank Accounts / Investments / Retirement</div></div>
+          </button>
+          <button class="option-btn multi" data-q="3" data-val="business" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">💼</div>
+            <div class="opt-text"><div class="opt-label">Business or Business Interests</div></div>
+          </button>
+          <button class="option-btn multi" data-q="3" data-val="none" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">📋</div>
+            <div class="opt-text"><div class="opt-label">No significant assets</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(3)">← Back</button>
+          <button class="btn-next" id="next3" onclick="nextQuestion(3)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card fade-in" id="q4" style="display:none">
+        <div class="q-step">Question 4 of 8</div>
+        <div class="q-text">Do you currently have a Will?</div>
+        <div class="q-sub">Be honest — most people don't.</div>
+        <div class="options-grid two-col">
+          <button class="option-btn" data-q="4" data-val="yes_recent" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">✅</div>
+            <div class="opt-text"><div class="opt-label">Yes — signed within 5 years</div></div>
+          </button>
+          <button class="option-btn" data-q="4" data-val="yes_old" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">📄</div>
+            <div class="opt-text"><div class="opt-label">Yes — but it's old / needs updating</div></div>
+          </button>
+          <button class="option-btn" data-q="4" data-val="no" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">❌</div>
+            <div class="opt-text"><div class="opt-label">No Will</div></div>
+          </button>
+          <button class="option-btn" data-q="4" data-val="unsure" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🤷</div>
+            <div class="opt-text"><div class="opt-label">Not sure</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(4)">← Back</button>
+          <button class="btn-next" id="next4" disabled onclick="nextQuestion(4)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card fade-in" id="q5" style="display:none">
+        <div class="q-step">Question 5 of 8</div>
+        <div class="q-text">Do you have a Health Care Proxy or Living Will?</div>
+        <div class="q-sub">This tells doctors what you want — and gives someone authority to decide — if you can't speak for yourself.</div>
+        <div class="options-grid two-col">
+          <button class="option-btn" data-q="5" data-val="yes" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">✅</div>
+            <div class="opt-text"><div class="opt-label">Yes, I have both</div></div>
+          </button>
+          <button class="option-btn" data-q="5" data-val="partial" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">⚠️</div>
+            <div class="opt-text"><div class="opt-label">I have one but not the other</div></div>
+          </button>
+          <button class="option-btn" data-q="5" data-val="no" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">❌</div>
+            <div class="opt-text"><div class="opt-label">No — I don't have either</div></div>
+          </button>
+          <button class="option-btn" data-q="5" data-val="unsure" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🤷</div>
+            <div class="opt-text"><div class="opt-label">Not sure what these are</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(5)">← Back</button>
+          <button class="btn-next" id="next5" disabled onclick="nextQuestion(5)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card fade-in" id="q6" style="display:none">
+        <div class="q-step">Question 6 of 8</div>
+        <div class="q-text">Do you have a Power of Attorney?</div>
+        <div class="q-sub">A POA gives someone legal authority to handle your finances if you become incapacitated. Without one, no one — not even your spouse — can access your accounts.</div>
+        <div class="options-grid two-col">
+          <button class="option-btn" data-q="6" data-val="yes" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">✅</div>
+            <div class="opt-text"><div class="opt-label">Yes, signed recently</div></div>
+          </button>
+          <button class="option-btn" data-q="6" data-val="old" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">📋</div>
+            <div class="opt-text"><div class="opt-label">Yes, but it may be outdated</div></div>
+          </button>
+          <button class="option-btn" data-q="6" data-val="no" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">❌</div>
+            <div class="opt-text"><div class="opt-label">No Power of Attorney</div></div>
+          </button>
+          <button class="option-btn" data-q="6" data-val="unsure" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🤷</div>
+            <div class="opt-text"><div class="opt-label">Not sure</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(6)">← Back</button>
+          <button class="btn-next" id="next6" disabled onclick="nextQuestion(6)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card fade-in" id="q7" style="display:none">
+        <div class="q-step">Question 7 of 8</div>
+        <div class="q-text">Are you going through any major life changes right now?</div>
+        <div class="q-sub">Select all that apply.</div>
+        <div class="multi-hint">You can select multiple options</div>
+        <div class="options-grid">
+          <button class="option-btn multi" data-q="7" data-val="divorce" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">💔</div>
+            <div class="opt-text"><div class="opt-label">Divorce or separation</div></div>
+          </button>
+          <button class="option-btn multi" data-q="7" data-val="marriage" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">💍</div>
+            <div class="opt-text"><div class="opt-label">Getting married soon</div></div>
+          </button>
+          <button class="option-btn multi" data-q="7" data-val="death" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🕊️</div>
+            <div class="opt-text"><div class="opt-label">Dealing with a loved one's estate</div></div>
+          </button>
+          <button class="option-btn multi" data-q="7" data-val="health" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🏥</div>
+            <div class="opt-text"><div class="opt-label">Health issue or aging parent</div></div>
+          </button>
+          <button class="option-btn multi" data-q="7" data-val="none" onclick="toggleMulti(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">😌</div>
+            <div class="opt-text"><div class="opt-label">No major changes right now</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(7)">← Back</button>
+          <button class="btn-next" id="next7" onclick="nextQuestion(7)">Next →</button>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card fade-in" id="q8" style="display:none">
+        <div class="q-step">Question 8 of 8</div>
+        <div class="q-text">What's your biggest legal concern right now?</div>
+        <div class="q-sub">This helps us prioritize your recommendations.</div>
+        <div class="options-grid">
+          <button class="option-btn" data-q="8" data-val="protect_family" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">👨‍👩‍👧</div>
+            <div class="opt-text"><div class="opt-label">Making sure my family is protected</div></div>
+          </button>
+          <button class="option-btn" data-q="8" data-val="protect_assets" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">🏦</div>
+            <div class="opt-text"><div class="opt-label">Protecting my money and assets</div></div>
+          </button>
+          <button class="option-btn" data-q="8" data-val="end_of_life" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">❤️</div>
+            <div class="opt-text"><div class="opt-label">End-of-life and medical decisions</div></div>
+          </button>
+          <button class="option-btn" data-q="8" data-val="current_situation" onclick="selectOption(this)">
+            <div class="opt-check">✓</div>
+            <div class="opt-icon">⚡</div>
+            <div class="opt-text"><div class="opt-label">Handling a current legal situation</div></div>
+          </button>
+        </div>
+        <div class="quiz-nav">
+          <button class="btn-back" onclick="prevQuestion(8)">← Back</button>
+          <button class="btn-next" id="next8" disabled onclick="showEmailGate()">See My Results →</button>
+        </div>
+      </div>
+
+      <!-- EMAIL GATE -->
+      <div class="email-gate fade-in" id="emailGate" style="display:none">
+        <div class="email-gate-icon">📋</div>
+        <h2>Your Legal Checklist Is Ready</h2>
+        <p>Enter your email to see your personalized results — which documents you need, which are urgent, and free tools to get started today.</p>
+        <div class="email-form">
+          <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
+          <button class="btn-reveal" onclick="showResults()">See My Results →</button>
+        </div>
+        <span class="skip-link" onclick="showResults()">Skip — show results without email</span>
+      </div>
+
+    </div><!-- end quizBody -->
+
+    <!-- RESULTS (hidden until complete) -->
+    <div id="results" style="display:none" class="fade-in">
+
+      <div class="results-header">
+        <div class="score-circle-wrap">
+          <div class="score-circle" id="scoreCircle">
+            <div class="score-num" id="scoreNum">—</div>
+            <div class="score-label" id="scoreLabel">Score</div>
+          </div>
+        </div>
+        <h2 id="resultsHeadline">Your Legal Protection Report</h2>
+        <p id="resultsSub">Based on your answers, here is your personalized legal document checklist.</p>
+      </div>
+
+      <div id="urgentSection" style="display:none">
+        <div class="results-section-label">🚨 URGENT — Act Now</div>
+        <div id="urgentCards"></div>
+      </div>
+
+      <div id="neededSection" style="display:none">
+        <div class="results-section-label">📋 NEEDED — Important for Your Situation</div>
+        <div id="neededCards"></div>
+      </div>
+
+      <div id="freeSection" style="display:none">
+        <div class="results-section-label">🆓 FREE TOOLS — Start Here at No Cost</div>
+        <div id="freeCards"></div>
+      </div>
+
+      <div id="goodSection" style="display:none">
+        <div class="results-section-label">✅ COVERED — You're in Good Shape Here</div>
+        <div id="goodCards"></div>
+      </div>
+
+      <!-- WhatsApp CTA -->
+      <div class="wa-result">
+        <h3>Questions About Your Results?</h3>
+        <p>Chat directly with our team on WhatsApp — free, no pressure, just honest answers about what you need and what you can skip.</p>
+        <a class="btn-wa" href="https://wa.me/17186756729?text=Hi, I just took the legal document quiz and have questions about my results." target="_blank">💬 Chat Now — It's Free</a>
+      </div>
+
+      <div class="restart-wrap">
+        <button class="btn-restart" onclick="restartQuiz()">↺ Retake Quiz</button>
+      </div>
+
+      <!-- Footer attribution -->
+      <div class="quiz-footer">
+        <p>This checklist was generated by <a href="https://easylegalfiling.com" target="_blank">EasyLegalFiling.com</a> — attorney-designed filing systems for individuals and families.<br>
+        Powered by Ettrick Campbell, Esq. · New Rochelle, New York · Not legal advice · Consult an attorney for your specific situation.</p>
+      </div>
+
+    </div><!-- end results -->
+
+  </div><!-- end quiz-container -->
+</div><!-- end quiz-page -->
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/17186756729" target="_blank">💬 <span>Free Help</span></a>
+
+<script>
+// ── STATE ──
+const answers = {};
+const multiAnswers = { 3: [], 7: [] };
+
+// ── OPTION SELECTION ──
+function selectOption(btn) {
+  const q = btn.dataset.q;
+  document.querySelectorAll(`[data-q="${q}"]`).forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[q] = btn.dataset.val;
+  const nextBtn = document.getElementById(`next${q}`);
+  if (nextBtn) nextBtn.disabled = false;
+}
+
+function toggleMulti(btn) {
+  const q = btn.dataset.q;
+  const val = btn.dataset.val;
+  btn.classList.toggle('selected');
+  const arr = multiAnswers[q];
+  const idx = arr.indexOf(val);
+  if (idx > -1) arr.splice(idx, 1);
+  else arr.push(val);
+  answers[q] = arr;
+}
+
+// ── NAVIGATION ──
+function nextQuestion(current) {
+  const curr = document.getElementById(`q${current}`);
+  curr.style.display = 'none';
+
+  const next = current + 1;
+  const pct = Math.round((next / 8) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Question ${next} of 8`;
+  document.getElementById('progressPct').textContent = pct + '%';
+
+  const nextEl = document.getElementById(`q${next}`);
+  if (nextEl) {
+    nextEl.style.display = 'block';
+    nextEl.classList.remove('hiding');
+  }
+}
+
+function prevQuestion(current) {
+  const curr = document.getElementById(`q${current}`);
+  curr.style.display = 'none';
+
+  const prev = current - 1;
+  const pct = Math.round((prev / 8) * 100);
+  document.getElementById('progressFill').style.width = Math.max(pct, 12) + '%';
+  document.getElementById('progressLabel').textContent = `Question ${prev} of 8`;
+  document.getElementById('progressPct').textContent = Math.max(pct, 12) + '%';
+
+  const prevEl = document.getElementById(`q${prev}`);
+  if (prevEl) prevEl.style.display = 'block';
+}
+
+function showEmailGate() {
+  document.getElementById('q8').style.display = 'none';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressLabel').textContent = 'Almost done!';
+  document.getElementById('progressPct').textContent = '100%';
+  document.getElementById('emailGate').style.display = 'block';
+}
+
+// ── RESULTS ENGINE ──
+function showResults() {
+  // Save email if provided
+  const emailVal = document.getElementById('emailInput').value;
+  if (emailVal && emailVal.includes('@')) {
+    // Could send to a backend here
+    console.log('Email captured:', emailVal);
+  }
+
+  document.getElementById('emailGate').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'none';
+
+  const r = answers;
+  const m3 = multiAnswers[3] || [];
+  const m7 = multiAnswers[7] || [];
+
+  const urgent = [];
+  const needed = [];
+  const free = [];
+  const good = [];
+
+  // ── DIVORCE ──
+  if (r['1'] === 'separated' || m7.includes('divorce')) {
+    urgent.push({
+      icon: '💔', bg: 'bg-red', badge: 'badge-urgent', badgeText: 'Urgent',
+      title: 'Uncontested Divorce Documents',
+      why: 'You indicated you are going through a divorce or separation. Every day without proper documents puts your assets and rights at risk.',
+      buttons: [
+        {cls:'primary', href:'https://easydivorcefiling.gavel.io/portal/bundles/ea88bd85-278e-47bd-a6b5-4b9ca0890a32', text:'Get NY Divorce Documents →'},
+        {cls:'outline', href:'/legalguide/divorce.html', text:'Read the Free NY Divorce Guide'}
+      ]
+    });
+  }
+
+  // ── PRENUP ──
+  if (r['1'] === 'partner' || m7.includes('marriage')) {
+    needed.push({
+      icon: '💍', bg: 'bg-amber', badge: 'badge-needed', badgeText: 'Needed',
+      title: m7.includes('marriage') ? 'Prenuptial Agreement' : 'Postnuptial Agreement',
+      why: m7.includes('marriage')
+        ? 'Getting married soon? A prenup takes 15 minutes to start and protects both of you for life.'
+        : 'Unmarried partners have almost zero legal protection without formal agreements. A postnup fixes this.',
+      buttons: [
+        {cls:'primary', href:'https://easydivorcefiling.gavel.io/portal/bundles/8773904c-ee28-4c41-a312-1cb0c4f32649', text:'Get NY Prenup →'},
+        {cls:'free', href:'https://easydivorcefiling.gavel.io/start/playground2/FREE%20PRENUP_POSTNUP%20RISK%20TOOL', text:'<span class="free-tag">Free</span>&nbsp; Run Free Prenup Risk Check'}
+      ]
+    });
+  }
+
+  // ── WILL ──
+  if (r['4'] === 'no' || r['4'] === 'unsure' || r['4'] === 'yes_old') {
+    const urgency = (r['2'] === 'minor' || r['2'] === 'expecting' || m3.includes('home')) ? urgent : needed;
+    urgency.push({
+      icon: '📜', bg: 'bg-purple', badge: r['4'] === 'yes_old' ? 'badge-needed' : 'badge-urgent',
+      badgeText: r['4'] === 'yes_old' ? 'Needs Update' : 'Missing',
+      title: 'Last Will and Testament',
+      why: r['4'] === 'yes_old'
+        ? 'Your Will may no longer reflect your current situation. Major life changes require an update.'
+        : (r['2'] === 'minor' || r['2'] === 'expecting')
+          ? 'You have or expect minor children but no Will. Without one, a court — not you — decides who raises them.'
+          : 'Without a Will, New York state law decides who gets your property. Your wishes don\'t matter.',
+      buttons: [
+        {cls:'primary', href:'/legalguide/will-new-york.html', text:'See My Completed NY Will — Free →'}
+      ]
+    });
+  } else if (r['4'] === 'yes_recent') {
+    good.push({
+      icon: '📜', bg: 'bg-green', badge: 'badge-done', badgeText: 'Done ✓',
+      title: 'Last Will and Testament',
+      why: 'Great — you have a recent Will. Review it if you\'ve had any major life changes recently.',
+      buttons: []
+    });
+  }
+
+  // ── HEALTH CARE DIRECTIVE ──
+  if (r['5'] === 'no' || r['5'] === 'unsure' || r['5'] === 'partial') {
+    const urgency = (m7.includes('health') || r['5'] === 'partial') ? urgent : needed;
+    urgency.push({
+      icon: '❤️', bg: 'bg-red', badge: r['5'] === 'partial' ? 'badge-needed' : 'badge-urgent',
+      badgeText: r['5'] === 'partial' ? 'Incomplete' : 'Missing',
+      title: 'Health Care Directive (Living Will + Proxy)',
+      why: 'Without this, doctors cannot legally follow your family\'s instructions in a medical emergency. Valid in all 50 states.',
+      buttons: [
+        {cls:'primary', href:'/legalguide/health-care-directive.html', text:'See My Completed Directive — Free →'}
+      ]
+    });
+  } else if (r['5'] === 'yes') {
+    good.push({
+      icon: '❤️', bg: 'bg-green', badge: 'badge-done', badgeText: 'Done ✓',
+      title: 'Health Care Directive',
+      why: 'You have both a Living Will and Health Care Proxy. Make sure copies are with your doctor and agent.',
+      buttons: []
+    });
+  }
+
+  // ── POWER OF ATTORNEY ──
+  if (r['6'] === 'no' || r['6'] === 'unsure' || r['6'] === 'old') {
+    needed.push({
+      icon: '📋', bg: 'bg-purple', badge: r['6'] === 'old' ? 'badge-needed' : 'badge-needed',
+      badgeText: r['6'] === 'old' ? 'Needs Update' : 'Missing',
+      title: 'Power of Attorney',
+      why: 'Without a POA, no one — not even your spouse — can legally manage your finances if you become incapacitated. Banks will refuse access.',
+      buttons: [
+        {cls:'primary', href:'/legalguide/power-of-attorney-new-york.html', text:'See My Completed POA — Free →'}
+      ]
+    });
+  } else if (r['6'] === 'yes') {
+    good.push({
+      icon: '📋', bg: 'bg-green', badge: 'badge-done', badgeText: 'Done ✓',
+      title: 'Power of Attorney',
+      why: 'You have a current POA. Make sure your agent still has a copy and their contact info is up to date.',
+      buttons: []
+    });
+  }
+
+  // ── ESTATE ──
+  if (m7.includes('death') || (r['2'] !== 'none' && (m3.includes('home') || m3.includes('savings')))) {
+    free.push({
+      icon: '🏛️', bg: 'bg-teal', badge: 'badge-free', badgeText: 'Free Tool',
+      title: 'NY Estate / Inheritance Rights Check',
+      why: m7.includes('death')
+        ? 'You\'re dealing with a loved one\'s estate. Find out your exact rights and which documents you need to file.'
+        : 'You have assets and beneficiaries. Know your NY inheritance rights before it\'s too late.',
+      buttons: [
+        {cls:'free', href:'https://easylegalfiling.com/Inheritance-tool/', text:'<span class="free-tag">Free</span>&nbsp; Check My Inheritance Rights →'},
+        {cls:'outline', href:'/legalguide/estate.html', text:'NY Estate Guide'}
+      ]
+    });
+  }
+
+  // ── PRENUP FREE TOOL ──
+  if (!needed.some(n => n.title.includes('Prenup')) && !urgent.some(u => u.title.includes('Prenup'))) {
+    free.push({
+      icon: '💍', bg: 'bg-amber', badge: 'badge-free', badgeText: 'Free Tool',
+      title: 'Free Prenup / Postnup Risk Check',
+      why: 'Find out in 2 minutes if you need a prenup or postnup and what your risks are. Free — no commitment.',
+      buttons: [
+        {cls:'free', href:'https://easydivorcefiling.gavel.io/start/playground2/FREE%20PRENUP_POSTNUP%20RISK%20TOOL', text:'<span class="free-tag">Free</span>&nbsp; Run Risk Check →'}
+      ]
+    });
+  }
+
+  // ── SCORE CALCULATION ──
+  const totalGaps = urgent.length + needed.length;
+  const totalDocs = totalGaps + good.length;
+  const coveragePct = totalDocs > 0 ? Math.round((good.length / totalDocs) * 100) : 0;
+
+  let scoreClass, headline, subtext;
+  if (urgent.length >= 2) {
+    scoreClass = 'score-urgent';
+    headline = 'You Have Significant Legal Gaps';
+    subtext = `We identified ${urgent.length} urgent issue${urgent.length > 1 ? 's' : ''} that need immediate attention. The good news: you can start fixing them today — most for free.`;
+  } else if (urgent.length === 1 || needed.length >= 2) {
+    scoreClass = 'score-moderate';
+    headline = 'You\'re Partially Protected';
+    subtext = `You have some coverage but there are important gaps. We found ${urgent.length + needed.length} document${urgent.length + needed.length > 1 ? 's' : ''} you need.`;
+  } else {
+    scoreClass = 'score-good';
+    headline = 'You\'re in Good Shape';
+    subtext = `You have solid legal protection in place. Review the recommendations below to make sure everything stays current.`;
+  }
+
+  const scoreEl = document.getElementById('scoreCircle');
+  scoreEl.className = `score-circle ${scoreClass}`;
+  document.getElementById('scoreNum').textContent = coveragePct + '%';
+  document.getElementById('scoreLabel').textContent = 'Protected';
+  document.getElementById('resultsHeadline').textContent = headline;
+  document.getElementById('resultsSub').textContent = subtext;
+
+  // Render cards
+  renderCards('urgentCards', 'urgentSection', urgent);
+  renderCards('neededCards', 'neededSection', needed);
+  renderCards('freeCards', 'freeSection', free);
+  renderCards('goodCards', 'goodSection', good);
+
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function renderCards(containerId, sectionId, items) {
+  if (items.length === 0) return;
+  document.getElementById(sectionId).style.display = 'block';
+  const container = document.getElementById(containerId);
+  container.innerHTML = items.map(item => `
+    <div class="result-card ${item.badge === 'badge-urgent' ? 'urgent' : item.badge === 'badge-needed' ? 'priority' : ''}">
+      <div class="result-card-head">
+        <div class="rc-icon ${item.bg}">${item.icon}</div>
+        <div style="flex:1">
+          <div class="rc-title">${item.title}</div>
+          <div class="rc-why">${item.why}</div>
+        </div>
+        <span class="rc-badge ${item.badge}">${item.badgeText}</span>
+      </div>
+      ${item.buttons.length > 0 ? `
+      <div class="result-card-body">
+        ${item.buttons.map(b => `
+          <a class="btn-result ${b.cls}" href="${b.href}" target="_blank">${b.text} <span>→</span></a>
+        `).join('')}
+      </div>` : ''}
+    </div>
+  `).join('');
+}
+
+function restartQuiz() {
+  // Reset state
+  Object.keys(answers).forEach(k => delete answers[k]);
+  multiAnswers[3] = []; multiAnswers[7] = [];
+
+  // Hide results, show quiz
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'block';
+
+  // Reset progress
+  document.getElementById('progressFill').style.width = '12%';
+  document.getElementById('progressLabel').textContent = 'Question 1 of 8';
+  document.getElementById('progressPct').textContent = '12%';
+
+  // Reset all questions
+  for (let i = 1; i <= 8; i++) {
+    const q = document.getElementById(`q${i}`);
+    if (q) {
+      q.style.display = i === 1 ? 'block' : 'none';
+      q.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      const nextBtn = q.querySelector('.btn-next');
+      if (nextBtn && i !== 3 && i !== 7) nextBtn.disabled = true;
+    }
+  }
+
+  document.getElementById('emailGate').style.display = 'none';
+  document.getElementById('emailInput').value = '';
+
+  // Clear result sections
+  ['urgentSection','neededSection','freeSection','goodSection'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
